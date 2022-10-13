@@ -2,6 +2,7 @@ import clsx from "clsx"
 import { useCollections } from "medusa-react"
 import Link from "next/link"
 import CountrySelect from "../country-select"
+import {STORE_NAME} from "@lib/config";
 
 const FooterNav = () => {
   const { collections } = useCollections()
@@ -11,12 +12,12 @@ const FooterNav = () => {
       <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between">
         <div>
           <Link href="/">
-            <a className="text-xl-semi uppercase">Acme</a>
+            <a className="text-xl-semi uppercase">{STORE_NAME}</a>
           </Link>
         </div>
         <div className="text-small-regular grid grid-cols-2 gap-x-16">
           <div className="flex flex-col gap-y-2">
-            <span className="text-base-semi">Collections</span>
+            <span className="text-base-semi">Our Collections</span>
             <ul
               className={clsx("grid grid-cols-1 gap-y-2", {
                 "grid-cols-2": (collections?.length || 0) > 4,
@@ -31,47 +32,15 @@ const FooterNav = () => {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-y-2">
-            <span className="text-base-semi">Medusa</span>
-            <ul className="grid grid-cols-1 gap-y-2">
-              <li>
-                <a
-                  href="https://github.com/medusajs"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://docs.medusajs.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/medusajs/nextjs-starter-medusa"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Source code
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <div className="flex flex-col-reverse gap-y-4 justify-center xsmall:items-center xsmall:flex-row xsmall:items-end xsmall:justify-between">
         <span className="text-xsmall-regular text-gray-500">
-          © Copyright 2022 ACME
+          {`© Copyright ${(new Date()).getFullYear()} ${STORE_NAME}`}
         </span>
-        <div className="min-w-[316px] flex xsmall:justify-end">
-          <CountrySelect />
-        </div>
+        {/*<div className="min-w-[316px] flex xsmall:justify-end">*/}
+        {/*  <CountrySelect />*/}
+        {/*</div>*/}
       </div>
     </div>
   )

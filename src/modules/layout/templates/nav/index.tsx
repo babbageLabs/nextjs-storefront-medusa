@@ -8,10 +8,14 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import Logo from "@modules/layout/templates/nav/logo";
 
-const Nav = () => {
-  const { pathname } = useRouter()
-  const [isHome, setIsHome] = useState(false)
+
+interface NavProps {
+  isHome: boolean
+}
+
+const Nav = ({ isHome }: NavProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   //useEffect that detects if window is scrolled > 5px on the Y axis
@@ -32,10 +36,6 @@ const Nav = () => {
       }
     }
   }, [isHome])
-
-  useEffect(() => {
-    pathname === "/" ? setIsHome(true) : setIsHome(false)
-  }, [pathname])
 
   const { toggle } = useMobileMenu()
 
@@ -70,17 +70,13 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="flex items-center h-full">
-            <Link href="/">
-              <a className="text-xl-semi uppercase">Acme</a>
-            </Link>
-          </div>
+          <Logo />
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
               {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
               <Link href="/account">
-                <a>Account</a>
+                <a>My Account</a>
               </Link>
             </div>
             <CartDropdown />
