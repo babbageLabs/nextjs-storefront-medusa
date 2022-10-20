@@ -7,9 +7,9 @@ module.exports = withStoreConfig({
   images: {
     domains: [
       "medusa-public-images.s3.eu-west-1.amazonaws.com",
-      "localhost",
-      "bucket.babbage-labs.com",
-      "172.17.58.130"
+      // "localhost",
+      "bucket.babbage-labs.com:9001",
+      // "172.17.58.130"
     ]
   }
 });
